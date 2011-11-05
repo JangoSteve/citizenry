@@ -166,6 +166,7 @@ feature "The person edit form" do
 
       current_path.should == edit_person_path(@first_person)
       page.should have_selector('form.person')
+      raise page.body # FIXME debugging
       page.should have_selector('select#person_user_id')
     end
   end
@@ -287,6 +288,7 @@ feature "The person edit form" do
       page.should_not have_selector('img.person_photo')
 
       visit edit_person_path(@person)
+      raise page.body # FIXME debugging
       within 'form.person' do
         attach_file('person_photo', Rails.root.join('spec', 'acceptance', 'support', 'test_photo.png'))
         find("input[name='commit']").click
@@ -307,6 +309,7 @@ feature "The person edit form" do
       page.should_not have_selector('img.person_photo')
 
       visit edit_person_path(@person)
+      raise page.body # FIXME debugging
       within 'form.person' do
         fill_in 'person_photo_import_url', :with => "http://example.com/photo.png"
         find("input[name='commit']").click
