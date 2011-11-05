@@ -38,6 +38,10 @@ Factory.define :person do |p|
   p.location { Faker::Address.city }
 end
 
+Factory.define :person_with_user, :parent => :person do |p|
+  p.association :user
+end
+
 #--[ Project ]------------------------------------------------------------------
 Factory.define :project do |p|
   p.name { "The #{Faker::Company.catch_phrase} Project".titleize }
